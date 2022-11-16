@@ -1,15 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const exercises1 = 10
-const exercises2 = 7
-const exercises3 = 14
-
 const Header = (props) => {
   return (
     <>
-      <h1>{props.course}</h1>
-    </>
+      <h1>{props.course.name}</h1>
+    </> 
   )
 }
 
@@ -21,36 +17,56 @@ const Part = (props) => {
   )
 }
 
-const Content = () => {
+const Content = (props) => {
+
   return (
-    <>
+    <>      
       <p>
-        <Part partName={'Fundamentals of React'} exercises={exercises1}/>
-      </p>
+        <Part partName={props.course.parts[0]['name']} exercises={props.course.parts[0]['exercises']}/>
+      </p>  
       <p>
-        <Part partName={'Using props to pass data'} exercises={exercises2}/>
-      </p>
+        <Part partName={props.course.parts[1]['name']} exercises={props.course.parts[1]['exercises']}/>
+      </p> 
       <p>
-        <Part partName={'State of a component'} exercises={exercises3}/>
-      </p>      
+        <Part partName={props.course.parts[2]['name']} exercises={props.course.parts[2]['exercises']}/>
+      </p>    
     </>
   )
 }
 
 const Total = (props) => {
+  const add = props.course.parts[0]['exercises'] + props.course.parts[1]['exercises'] + props.course.parts[2]['exercises']
   return (
   <div>   
-    <p>Number of exercises {props.add}</p>
+    <p>Number of exercises {add}</p>
   </div>
   )
-}
+} 
 
 const App = () => { 
-  return (
-    <>     
-      <Header course={'Half Stack applicaiton development'}/>
-      <Content />
-      <Total add={exercises1 + exercises2 + exercises3}/>
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }    
+    ]
+  }
+
+  return (  
+    <> 
+      <Header course={course}/>
+      <Content course={course}/>
+      <Total course={course}/>
     </>
   )
 }
