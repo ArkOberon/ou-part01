@@ -21,7 +21,7 @@ const Part = (props) => {
   )
 }
 
-const Content = (props) => {
+const Content = () => {
   return (
     <>
       <p>
