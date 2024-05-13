@@ -1,7 +1,9 @@
-const Total = ({exercises1, exercises2, exercises3}) => {
+const Total = (props) => {
+  const arrayExer = props.parts.map((exer) => exer.exercises)
+  
   return (
     <>
-      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+      <p>Number of exercises: {arrayExer.reduce((accumulator, currentValue) => accumulator + currentValue)}</p>
     </>
   )
 }

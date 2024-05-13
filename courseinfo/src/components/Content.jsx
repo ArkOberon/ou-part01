@@ -1,13 +1,13 @@
-import Part1 from "./Part1"
-import Part2 from "./Part2"
-import Part3 from "./Part3"
+import Part from "./Part"
 
-const Content = ({part1, exercises1, part2, exercises2, part3, exercises3}) => {
+const Content = (props) => {
   return (
-    <>     
-      <Part1 part1={part1} exercises1={exercises1}/> 
-      <Part2 part2={part2} exercises2={exercises2}/> 
-      <Part3 part3={part3} exercises3={exercises3}/> 
+    <>  
+      {
+        props.parts.map((course, idx) => {
+          return  <Part key={idx} name={course.name}  excercises={course.exercises} />          
+        })   
+      }
     </>
   )
 }
